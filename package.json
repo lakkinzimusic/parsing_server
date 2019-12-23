@@ -22,7 +22,6 @@
     "tress": "^1.1.4"
   },
   "files": [
-    "lib",
     "bin" // this was missing
   ]
 }
