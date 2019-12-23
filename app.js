@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 let tress = require('tress');
 let needle = require('needle');
 let cheerio = require('cheerio');
