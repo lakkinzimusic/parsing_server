@@ -21,7 +21,5 @@
     "needle": "^2.4.0",
     "tress": "^1.1.4"
   },
-  "files": [
-    "bin" // this was missing
-  ]
+
 }
