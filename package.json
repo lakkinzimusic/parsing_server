@@ -1,6 +1,6 @@
 {
   "name": "node_parsing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -12,14 +12,12 @@
     "parsing_articles": "node app.js"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/lakkinzimusic/parsing_articles.git"
+    "type": "git",
+    "url": "https://github.com/lakkinzimusic/parsing_articles.git"
   },
-
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "needle": "^2.4.0",
     "tress": "^1.1.4"
   }
-
 }
