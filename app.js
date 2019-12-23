@@ -11,9 +11,11 @@ let dir = args[0];
 let tag = 'JavaScript';
 var articles_links = [];
 var pages = [];
-
+console.log('begin')
 var q = tress(function (url, callback) {
     needle.get(url, function (err, res) {
+        console.log('function')
+        console.log(process.cwd())
         if (err) throw err;
         // парсим DOM
         var $ = cheerio.load(res.body);
@@ -82,7 +84,7 @@ q.drain = function () {
 }
 
 q.push(URL);
-
+console.log(end)
 function getDate(date) {
     let d=new Date();
     let day=d.getDate();
