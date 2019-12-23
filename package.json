@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "parsing_articles": "node app.js"
+    "parsing_articles": "./app.js"
   },
   "repository": {
     "type": "git",
