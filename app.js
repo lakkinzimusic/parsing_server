@@ -84,7 +84,7 @@ q.drain = function () {
 }
 
 q.push(URL);
-console.log(end)
+console.log('end')
 function getDate(date) {
     let d=new Date();
     let day=d.getDate();
