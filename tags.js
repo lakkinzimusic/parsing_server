@@ -1,7 +1,7 @@
 module.exports =
     [
-        // 'js',
-        // 'node.js',
-        // 'vue',
-        'JavaScript'
+        'js',
+        'node.js',
+        'vue',
+        'JavaScript',
     ]

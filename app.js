@@ -5,79 +5,74 @@ let cheerio = require('cheerio');
 let fs = require('fs');
 let DOMEN = 'https://habr.com';
 let URL = 'https://habr.com/ru/flows/develop/';
-let results = [];
 const [, , ...args] = process.argv;
 let DIR = args[0];
 if (DIR.substr(-1) === '/') {
-    DIR = DIR.substring(0, str.length - 1)
+    DIR = DIR.substring(0, DIR.length - 1)
 }
 let articles_counter = 0;
 let tag = 'JavaScript';
 let tags = require('./tags');
-var articles_links = [];
-var pages = [];
-console.log('begin');
-var q = tress(function (url, callback) {
-    needle.get(url, function (err, res) {
-        if (err) throw err;
-        // парсим DOM
-        var $ = cheerio.load(res.body);
-        // post__body_crop
-        $('.content-list > li').toArray().map(x => {
-            $(x).find('ul > li').toArray().map(y => {
-                let hub = $(y).find('a').text();
-                if (tag.indexOf(hub) > -1) {
-                    let link_1 = $(x).find('li >  article > div > a').attr('href');
-                    if (link_1) {
-                        articles_links.push(link_1)
-                    }
-                }
-            });
+let articles_links = [];
+let pages = [];
+pages.push(URL)
+Parsing(pages, articles_links);
+
+async function Parsing() {
+    console.log()
+    await getPages(pages)
+    await getArticles(articles_links)
+    console.log(`Parsing successfully finished. ${articles_counter} with your tags were published yesterday.`)
+}
+
+
+async function getPages(pages) {
+    for (let url of pages) {
+        let res = await needle("get", url);
+        let $ = cheerio.load(res.body);
+        let posts = $('.content-list > li').toArray();
+        posts.map(post => {
+            let hubs = $(post).find('.post__hubs > li').toArray()
+            hubs = hubs.map(hub => $(hub).find('a').text());
+            let include = hubs.some(hub => tags.includes(hub))
+            if (include) {
+                let link = $(post).find('article > div > a').attr('href');
+                if (link) articles_links.push(link)
+            }
         });
-        $('.toggle-menu_pagination > li').toArray().map(x => {
-            let link = $(x).find('a').attr('href');
+
+        let pagination_objects = $('.toggle-menu_pagination > li').toArray()
+        pagination_objects.forEach(obj => {
+            let link = $(obj).find('a').attr('href');
             if (link) {
                 if (pages.indexOf(link) < 0) {
                     pages.push(DOMEN + link)
                 }
             }
-        });
-        if (pages.length >= 50) {
-
-            var q_2 = tress(function (url, callback) {
-                needle.get(url, function (err, res) {
-                    let $ = cheerio.load(res.body);
-                    let html = $('.post__wrapper');
-                    let time = html.find('.post__time').text()
-                    // console.log(time)
-                    if (time.includes('вчера')) {
-                        let header = $('.post__title-text').text();
-                        // makeDirectory();
-                        // writeFiles(header, html);
-                        articles_counter++
-                    }
-
-                    callback();
-                });
-            }, 10);
-
-            q_2.push(articles_links);
-
-            console.log('articles_links: ' + articles_links.length)
-            articles_links = [];
-            if (articles_links.length === 0) {
-                console.log('3')
-                console.log(`Parsing successfully completed. Yesterday was published ${articles_counter} articles on your tags`);
-                return
-            }
+        })
+        if (pages.length > 49) {
+            console.log('end pages')
+            return
         }
-        // q.push(articles_links)
-        q.push(pages)
-        callback();
+    }
+}
 
-    });
-}, 10); // запускаем 10 параллельных потоков
 
+async function getArticles(articles_links) {
+    for (let url of articles_links) {
+        let res = await needle("get", url)
+        let $ = cheerio.load(res.body);
+        let html = $('.post__wrapper');
+        let time = html.find('.post__time').text()
+        if (time.includes('вчера')) {
+            let header = $('.post__title-text').text();
+            makeDirectory();
+            writeFiles(header, html);
+            articles_counter++
+        }
+    }
+
+}
 
 function makeDirectory() {
     if (!fs.existsSync(`${DIR}/` + getDate())) {
@@ -94,8 +89,6 @@ function writeFiles(header, html) {
     });
 }
 
-
-q.push(URL);
 
 function getDate() {
     let d = new Date();
