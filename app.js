@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-let DOMEN = 'https://habr.com';
-let PRIMAL_URL = 'https://habr.com/ru/flows/develop/';
 let Parser = require('./Parser');
 let habr_config = require('./sites_config').habr_config;
+
+
 
 let habr_parser = new Parser(habr_config);
 
