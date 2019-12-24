@@ -1,17 +1,13 @@
 #!/usr/bin/env node
-let tress = require('tress');
+const [, , ...args] = process.argv;
 let needle = require('needle');
 let cheerio = require('cheerio');
 let fs = require('fs');
 let DOMEN = 'https://habr.com';
 let URL = 'https://habr.com/ru/flows/develop/';
-const [, , ...args] = process.argv;
-let DIR = args[0];
-if (DIR.substr(-1) === '/') {
-    DIR = DIR.substring(0, DIR.length - 1)
-}
+
+let DIR = args[0].substr(-1) === '/' ? args[0].substring(0, DIR.length - 1) : args[0];
 let articles_counter = 0;
-let tag = 'JavaScript';
 let tags = require('./tags');
 let articles_links = [];
 let pages = [];
