@@ -7,7 +7,7 @@ class Parser {
         this.PRIMAL_URL = site_config.PRIMAL_URL;
         this.DOMEN = site_config.DOMEN;
         this.selectors = site_config.selectors;
-        this.articles_counter = 0
+        this.articles_counter = 0;
     }
 
     async parse() {
@@ -49,7 +49,6 @@ class Parser {
     }
 
     async getArticles(articles_links) {
-
         let writer = new Writer()
         for (let url of articles_links) {
             let article = {}

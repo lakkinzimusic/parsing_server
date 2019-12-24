@@ -1,6 +1,7 @@
 module.exports =
     {
         habr_config: {
+            KEY: 'HabrParser',
             DOMEN: 'https://habr.com',
             PRIMAL_URL: 'https://habr.com/ru/flows/develop/',
             selectors: {
