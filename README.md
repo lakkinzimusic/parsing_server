@@ -4,7 +4,7 @@ This parser allows you to parse and save articles, provides access to the librar
 
 ## Getting Started
 
-#####npm: 
+##### npm: 
 
 ```
 npm install parsing_articles
@@ -17,7 +17,7 @@ At the moment, there are 3 scenarios in the application that will be offered to 
 2. Reading articles
 3. Clearing the library.
 
-###Parsing
+### Parsing
 Carried out by existing modules. 
 The module code is in /utils/parsers/ParserStrategy.js
 In the future, it should be distributed among modules for the full implementation of the factory. 
@@ -27,6 +27,5 @@ If parsing is successful, the articles are added to /libraries by default or in 
 
 
 ## Authors
-
-* **lakkinzi_music** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **lakkinzi_music** - [PurpleBooth](https://github.com/lakkinzimusic)
 
