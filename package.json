@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "inquirer": "^7.0.1",
     "needle": "^2.4.0"
   }
 }

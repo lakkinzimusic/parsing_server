@@ -1,7 +1,7 @@
 let needle = require('needle');
 let cheerio = require('cheerio');
 let Writer = require('../Writer');
-let tags = require('../tags');
+let tags = require('../../config/tags');
 let DB = require('../DB');
 
 class ParserStrategy {

@@ -1,6 +1,6 @@
 let needle = require('needle');
 let cheerio = require('cheerio');
-let tags = require('../../tags');
+let tags = require('../../../config/tags');
 let ParserStrategy = require('../ParserStrategy')
 
 class MediumParser extends ParserStrategy {

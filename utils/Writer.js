@@ -1,4 +1,4 @@
-const config = require('./config')
+const config = require('../config/config')
 let fs = require('fs').promises;
 let fs_2 = require('fs');
 const DB = require('./DB')
@@ -12,11 +12,26 @@ class Writer {
 
     async makeDirectory() {
         fs_2.exists(`${config.DIR}/`, async (exist) => {
-            if(!exist){
+            if (!exist) {
                 await fs.mkdir(`${config.DIR}`);
             }
 
         })
+    }
+
+    async copyFiles(filtered_json) {
+        for await (let json of filtered_json) {
+            await fs.copyFile(`${config.DIR}/${json.id}.html`, `${config.tmp_folder}/${json.header}.html`)
+        }
+    }
+
+    async removeTempFolder() {
+       await fs.rmdir(config.tmp_folder, {recursive: true});
+    }
+
+    async makeTempFolder() {
+
+        await fs.mkdir(`${config.tmp_folder}`);
     }
 
     async writeFileArticle(article) {
