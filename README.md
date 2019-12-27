@@ -27,5 +27,5 @@ If parsing is successful, the articles are added to /libraries by default or in 
 
 
 ## Authors
-* **lakkinzi_music** - [PurpleBooth](https://github.com/lakkinzimusic)
+* **lakkinzi_music** - [lakkinzi_music](https://github.com/lakkinzimusic)
 
