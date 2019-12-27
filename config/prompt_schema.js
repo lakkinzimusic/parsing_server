@@ -3,7 +3,8 @@ module.exports = {
         type: 'list',
         name: 'scenario',
         message: 'What are you want to do?',
-        choices: ['parsing', 'reading'],
+        choices: ['parsing', 'reading', 'cleaning database'],
+        default: 'parsing'
     },
     search: [
         {

@@ -21,17 +21,27 @@ class Writer {
 
     async copyFiles(filtered_json) {
         for await (let json of filtered_json) {
+            json.header = json.header.replace(/[\\/:"*?<>|]/g, '');
             await fs.copyFile(`${config.DIR}/${json.id}.html`, `${config.tmp_folder}/${json.header}.html`)
         }
     }
 
     async removeTempFolder() {
-       await fs.rmdir(config.tmp_folder, {recursive: true});
+        await fs.rmdir(config.tmp_folder, {recursive: true});
+    }
+
+
+    async removeLibraryFolder() {
+        await fs.rmdir(config.DIR, {recursive: true});
     }
 
     async makeTempFolder() {
+        fs_2.exists(`${config.DIR}/`, async (exist) => {
+            if (!exist) {
+                await fs.mkdir(`${config.tmp_folder}`);
+            }
 
-        await fs.mkdir(`${config.tmp_folder}`);
+        })
     }
 
     async writeFileArticle(article) {
@@ -46,13 +56,6 @@ class Writer {
     }
 
 
-    getDate() {
-        let d = new Date();
-        let day = d.getDate() - 1;
-        let month = d.getMonth() + 1;
-        let year = d.getFullYear();
-        return day + "." + month + "." + year;
-    }
 }
 
 module.exports = Writer;

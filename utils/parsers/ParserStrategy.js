@@ -35,24 +35,24 @@ class MediumParser extends ParserStrategy {
         super();
         this.PRIMAL_URL = config.PRIMAL_URL;
         this.SEARCH_URL = config.SEARCH_URL;
-        this.DOMEN = config.DOMEN
+        this.DOMEN = config.DOMEN;
         this.selectors = config.selectors
-        // console.log('MediumParser created')
     }
 
     async parse() {
-        console.log('medium begin')
         let articles_links = await this.getArticlesLinksFromPrimalURL(this.SEARCH_URL);
         await this.getArticles(articles_links)
-        console.log('medium end');
     }
 
 
     async getArticlesLinksFromPrimalURL(SEARCH_URL) {
-        let pages = []
+        let pages = [];
         let articles_links = [];
-        pages.push(SEARCH_URL + tags[0]);
-        for (let url of pages) {
+        tags.forEach(tag => {
+            pages.push(SEARCH_URL + tag);
+        });
+
+        for await (let url of pages) {
             let res = await needle("get", url);
             let $ = cheerio.load(res.body);
             let posts = $(this.selectors.posts_list_selector).toArray();
@@ -60,8 +60,8 @@ class MediumParser extends ParserStrategy {
                 let link = $(post).find(this.selectors.article_link_selector).attr('href');
                 articles_links.push(link)
             });
-            return articles_links
         }
+        return articles_links
     }
 
     async getArticles(articles_links) {
@@ -72,10 +72,8 @@ class MediumParser extends ParserStrategy {
             let $ = cheerio.load(res.body);
 
             article.html = $(this.selectors.post_wrapper_selector);
-
             let time = article.html.find(this.selectors.post_time_selector).text()
             article.header = $(this.selectors.post_header_selector).text();
-            // console.log(article.header)
             this.articles.push(article)
         }
     }
@@ -86,15 +84,13 @@ class HabrParser extends ParserStrategy {
     constructor(config) {
         super();
         this.PRIMAL_URL = config.PRIMAL_URL;
-        this.DOMEN = config.DOMEN
+        this.DOMEN = config.DOMEN;
         this.selectors = config.selectors
     }
 
     async parse() {
-        console.log('habr begin');
         let articles_links = await this.getArticlesLinksFromPrimalURL(this.PRIMAL_URL);
         await this.getArticles(articles_links);
-        console.log('habr end');
     }
 
 
@@ -125,7 +121,6 @@ class HabrParser extends ParserStrategy {
                 }
             });
             if (pages.length > 49) {
-                // console.log('end pages')
                 return articles_links
             }
         }
@@ -145,6 +140,7 @@ class HabrParser extends ParserStrategy {
         }
     }
 }
+
 module.exports = ParserStrategy;
 
 
