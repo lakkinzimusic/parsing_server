@@ -1,6 +1,6 @@
 module.exports =
     {
-        habr_config: {
+        HabrParser: {
             KEY: 'HabrParser',
             DOMEN: 'https://habr.com',
             PRIMAL_URL: 'https://habr.com/ru/flows/develop/',
@@ -14,7 +14,7 @@ module.exports =
                 post_time_selector: '.post__time',
             }
         },
-        medium_config: {
+        MediumParser: {
             KEY: 'MediumParser',
             DOMEN: 'https://medium.com/',
             PRIMAL_URL: 'https://medium.com/search?q=',

@@ -1,22 +1,17 @@
 let needle = require('needle');
 let cheerio = require('cheerio');
 let tags = require('../../../config/tags');
-const ParserStrategy = require('../ParserStrategy')
 
-const HabrParser = module.exports = class HabrParser extends ParserStrategy {
+class HabrParser  {
     constructor(config) {
-        super();
         this.PRIMAL_URL = config.PRIMAL_URL;
         this.DOMEN = config.DOMEN
         this.selectors = config.selectors
-        console.log('HabrParser created')
     }
 
     async parse() {
-        console.log('habr begin');
         let articles_links = await this.getArticlesLinksFromPrimalURL(this.PRIMAL_URL);
         await this.getArticles(articles_links);
-        console.log('habr end');
     }
 
 
@@ -47,7 +42,6 @@ const HabrParser = module.exports = class HabrParser extends ParserStrategy {
                 }
             });
             if (pages.length > 49) {
-                // console.log('end pages')
                 return articles_links
             }
         }
@@ -68,3 +62,4 @@ const HabrParser = module.exports = class HabrParser extends ParserStrategy {
     }
 }
 
+module.exports = HabrParser;

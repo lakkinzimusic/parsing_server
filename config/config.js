@@ -9,4 +9,4 @@ else {
 let tmp_folder = './tmp_folder';
 module.exports = {
     DIR, tmp_folder
-};
+}

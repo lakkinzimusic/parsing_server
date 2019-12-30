@@ -4,4 +4,6 @@ module.exports =
         'node.js',
         'vue',
         'JavaScript',
+        'NET',
+        'C'
     ]

@@ -1,58 +1,16 @@
 [
   {
-    "header": "Learn React JS in 5 minutes — A tutorial for beginnersThe setupComponentsHandling dataPropsStateEvent Handlers",
-    "domen": "https://medium.com/",
-    "date": "26.12.2019",
+    "header": "Туториал из руководства по Ember.js. Приложение Super Rentals. Часть 1.2",
+    "domen": "https://habr.com",
+    "date": "29.12.2019",
     "tags": [],
     "id": 1
   },
   {
-    "header": "What exactly is Node.js?Why Node.js?Blocking I/ONon-blocking I/OThe JavaScript event loopnpmRequireNode ModulesV8 turbo-charges JavaScript by leveraging C++EventsWriting Hello World in Node.js",
+    "header": "Learn React JS in 5 minutes — A tutorial for beginnersThe setupComponentsHandling dataPropsStateEvent Handlers",
     "domen": "https://medium.com/",
-    "date": "26.12.2019",
+    "date": "29.12.2019",
     "tags": [],
     "id": 2
-  },
-  {
-    "header": "I created the exact same app in React and Vue. Here are the differences.Anyway, this intro is already longer than I’d anticipated. So let’s start by having a quick look at how the two apps look:How do we mutate data?How do we create new To Do Items?How do we delete from the list?How do we pass event listeners?How do we emit data back to a parent component?And there we have it! 🎉",
-    "domen": "https://medium.com/",
-    "date": "26.12.2019",
-    "tags": [],
-    "id": 3
-  },
-  {
-    "header": "10 Interview QuestionsEvery JavaScript Developer Should KnowIt Starts With PeopleConclusion",
-    "domen": "https://medium.com/",
-    "date": "26.12.2019",
-    "tags": [],
-    "id": 4
-  },
-  {
-    "header": "How it feels to learn JavaScript in 2016",
-    "domen": "https://medium.com/",
-    "date": "26.12.2019",
-    "tags": [],
-    "id": 8
-  },
-  {
-    "header": "Две красные кнопки, паяльник и React: как мы делали движуху для IT-конференции",
-    "domen": "https://habr.com",
-    "date": "26.12.2019",
-    "tags": [],
-    "id": 6
-  },
-  {
-    "header": "Vue.js: Хуки жизненного цикла ваших и сторонних компонентов",
-    "domen": "https://habr.com",
-    "date": "26.12.2019",
-    "tags": [],
-    "id": 7
-  },
-  {
-    "header": "Простой веб сервер для SPA/PWA за «5 минут»",
-    "domen": "https://habr.com",
-    "date": "26.12.2019",
-    "tags": [],
-    "id": 8
   }
 ]

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const inquirer = require('inquirer');
 let prompt_schema = require('./config/prompt_schema');
-const PARSING = require('./scenatios/PARSING')
-const READING = require('./scenatios/READING')
-const CLEAN_DB = require('./scenatios/CLEAN_DB')
+const PARSING = require('./scenatios/PARSING');
+const READING = require('./scenatios/READING');
+const CLEAN_DB = require('./scenatios/CLEAN_DB');
 
 async function GO() {
     let answers = await inquirer.prompt(prompt_schema.scenario);
