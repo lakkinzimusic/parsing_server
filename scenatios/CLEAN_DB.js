@@ -8,7 +8,6 @@ let db = new DB();
 async function CLEAN_DB() {
     await db.clean_db_file();
     await writer.removeLibraryFolder();
-    process.exit(22)
 }
 
 

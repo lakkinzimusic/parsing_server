@@ -3,33 +3,23 @@ let fs = require('fs').promises;
 const PARSING = require('../scenatios/PARSING');
 const READING = require('../scenatios/READING');
 const CLEAN_DB = require('../scenatios/CLEAN_DB');
+const DB = require('../utils/DB');
 
 class Main {
     static async index(request, response) {
-        let res = {}
-        res.articles = require('../utils/db.json');
-        res.tags = require('../config/tags.js');
-        response.end(JSON.stringify(res));
+        let res = {};
+        let articles = await DB.get_actual_db();
+        response.send(articles);
     }
 
-    static add_tags(request, response) {
-        let tags = require('../config/tags.js');
-        let body = '';
-        request.on('data', chunk => {
-            body += chunk.toString(); // convert Buffer to string
-            console.log(body)
-        });
-        // console.log(response)
-        // console.log(request)
-        response.end(JSON.stringify(request));
+    static async clean_db(request, response) {
+        await CLEAN_DB();
+        let articles = await DB.get_actual_db();
+        response.send(articles);
     }
 
-    static reading(response) {
-    }
 
-    static clean_db(response) {
 
-    }
 }
 
 module.exports = Main;

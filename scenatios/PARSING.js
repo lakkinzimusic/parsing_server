@@ -1,14 +1,13 @@
 let DB = require('../utils/DB');
 let ParserStrategy = require('../utils/parsers/ParserStrategy');
-let HabrParser = require('../utils/parsers/concrete_parsers/HabrParser');
-let MediumParser = require('../utils/parsers/concrete_parsers/MediumParser');
 let Writer = require('../utils/Writer');
 let parsers_config = require('../config/sites_config');
-let Parsers = [HabrParser, MediumParser]
+let Parsers = []
 let writer = new Writer();
 let db = new DB();
 
 async function PARSING() {
+    await find_parsers();
     await init_strategies();
     await parsing();
 }
@@ -16,11 +15,25 @@ async function PARSING() {
 let parsers = [];
 let parser_info = {};
 
+async function find_parsers() {
+    let parsers = []
+    for (let parser in parsers_config) {
+        if (parsers_config[parser].active) {
+            parsers.push(parsers_config[parser].KEY)
+        }
+    }
+    for await (let parser of parsers) {
+        let p = require('../utils/parsers/concrete_parsers/' + parser)
+        Parsers.push(p);
+    }
+}
+
 function init_strategies() {
     parsers = Parsers.map(parser => {
         let obj = new parser(parsers_config[parser.name])
         return new ParserStrategy(obj);
     });
+    Parsers = [];
 }
 
 async function parsing() {
@@ -35,6 +48,7 @@ async function parsing() {
             }
         }
     }
+    parsers = [];
 }
 
 

@@ -52,7 +52,7 @@ class Writer {
             article.header = this.count;
             this.count = this.count++
         }
-        await  fs.writeFile(`${config.DIR}/${article.article_info.id}.html`, article.html)
+        await fs.writeFile(`${config.DIR}/${article.article_info.id}.html`, article.html)
     }
 
 

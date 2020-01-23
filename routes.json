@@ -3,8 +3,38 @@
     "handler": "main",
     "action": "index"
   },
-  "/tags": {
+  "/parsing": {
+    "handler": "parsing",
+    "action": "parse"
+  },
+  "/open_article": {
+    "handler": "articles",
+    "action": "open_article"
+  },
+  "/get_all_parsers": {
+    "handler": "parsing",
+    "action": "get_all_parsers"
+  },
+  "/change_parser_activity": {
+    "handler": "parsing",
+    "action": "change_parser_activity"
+  },
+
+  "/clean_db": {
     "handler": "main",
-    "action": "add_tags"
+    "action": "clean_db"
+  },
+  "/tags": {
+    "handler": "tags",
+    "action": "get_tags"
+  },
+  "/tags/post": {
+    "handler": "tags",
+    "action": "add_tag"
+  },
+  "/tags/delete": {
+    "handler": "tags",
+    "action": "delete_tag"
   }
+
 }
