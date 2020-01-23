@@ -5,15 +5,23 @@ const READING = require('../scenatios/READING');
 const CLEAN_DB = require('../scenatios/CLEAN_DB');
 
 class Main {
-    static async index(response) {
+    static async index(request, response) {
         let res = {}
         res.articles = require('../utils/db.json');
         res.tags = require('../config/tags.js');
         response.end(JSON.stringify(res));
     }
 
-    static parsing(response) {
-        console.log('parsing')
+    static add_tags(request, response) {
+        let tags = require('../config/tags.js');
+        let body = '';
+        request.on('data', chunk => {
+            body += chunk.toString(); // convert Buffer to string
+            console.log(body)
+        });
+        // console.log(response)
+        // console.log(request)
+        response.end(JSON.stringify(request));
     }
 
     static reading(response) {

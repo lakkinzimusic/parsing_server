@@ -3,8 +3,8 @@
     "handler": "main",
     "action": "index"
   },
-  "/foo": {
+  "/tags": {
     "handler": "main",
-    "action": "foo"
+    "action": "add_tags"
   }
 }

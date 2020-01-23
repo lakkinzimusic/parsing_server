@@ -34,7 +34,7 @@ class Server {
             });
             try {
                 let handler = require('./handlers/' + route.handler);
-                handler[route.action](response);
+                handler[route.action](request, response);
             } catch(e) {
                 response.writeHead(500);
                 response.end();
@@ -46,32 +46,3 @@ class Server {
 Server.start(3001);
 
 
-
-
-// #!/usr/bin/env node
-// const inquirer = require('inquirer');
-// let prompt_schema = require('./config/prompt_schema');
-// const PARSING = require('./scenatios/PARSING');
-// const READING = require('./scenatios/READING');
-// const CLEAN_DB = require('./scenatios/CLEAN_DB');
-//
-// async function GO() {
-//     let answers = await inquirer.prompt(prompt_schema.scenario);
-//     switch (answers.scenario) {
-//         case 'parsing' : {
-//             PARSING();
-//             break;
-//         }
-//         case 'reading' : {
-//             READING();
-//             break;
-//         }
-//         case 'cleaning database' : {
-//             CLEAN_DB();
-//             break;
-//         }
-//     }
-// }
-//
-//
-// GO();
