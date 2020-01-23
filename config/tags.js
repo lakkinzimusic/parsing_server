@@ -5,5 +5,6 @@ module.exports =
         'vue',
         'JavaScript',
         'NET',
-        'C'
+        'C',
+        'Облачные сервисы',
     ]

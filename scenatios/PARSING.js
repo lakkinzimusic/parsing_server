@@ -9,14 +9,14 @@ let writer = new Writer();
 let db = new DB();
 
 async function PARSING() {
-    await init_Strategies();
+    await init_strategies();
     await parsing();
 }
 
 let parsers = [];
 let parser_info = {};
 
-function init_Strategies() {
+function init_strategies() {
     parsers = Parsers.map(parser => {
         let obj = new parser(parsers_config[parser.name])
         return new ParserStrategy(obj);
@@ -24,13 +24,9 @@ function init_Strategies() {
 }
 
 async function parsing() {
-    let it = 0
-    console.log(parsers)
     for await (let parser of parsers) {
-        console.log(it)
         parser_info = await parser.parsing_main();
         parser = await db.article_info_forming(parser_info);
-        console.log('parsong')
         let exist = await db.writeDbInfo(parser_info.articles);
         await writer.makeDirectory();
         for await (let article of   parser_info.articles) {
@@ -38,7 +34,6 @@ async function parsing() {
                 await writer.writeFileArticle(article);
             }
         }
-        it++
     }
 }
 
